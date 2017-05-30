@@ -1,0 +1,95 @@
+<div class="container">
+    <div class="page-header">
+        <button type="button" class="btn btn-success pull-right" data-toggle="modal" href="#my-modal-create">Add group</button>
+        <h1>Groups List</h1>
+    </div>
+    <div class="alert alert-info" ng-if="groups.message">
+        <a href="#" class="close" data-dismiss="alert" ng-click="clearMessage()" aria-label="close">&times;</a>
+        {{groups.message}}
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Index</th>
+                <th>Name of group</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="group in groups.groupsList">
+                <td>{{$index+1}}</td>
+                <td>{{group.name}}</td>
+                <td><button type="button" class="btn btn-info" data-toggle="modal" href="#my-modal-edit" ng-click="groups.selectGroup(group)"><span class="glyphicon glyphicon glyphicon-pencil"></span></button></td>
+                <td><button type="button" class="btn btn-danger" data-toggle="modal" href="#my-modal-delete" ng-click="groups.selectGroup(group)"><span class="glyphicon  glyphicon glyphicon-trash"></span></button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+<!-- Modal create -->
+<div class="modal fade" id="my-modal-create">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">New group registration</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name of group:</label>
+                        <input type="text" class="form-control" id="name" ng-model="groups.newGroup.name">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="groups.saveGroup(group.newGroup)"  data-dismiss="modal">Create group</button>
+            </div>
+        </div>
+    </div>
+</div><!-- /.modal create -->
+
+<!-- Modal edit-->
+<div class="modal fade" id="my-modal-edit">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Edit {{groups.clickedGroup.name}} info</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="editname">First name:</label>
+                        <input type="text" class="form-control" id="editname" ng-model="groups.clickedGroup.name">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="groups.updateGroup()" data-dismiss="modal">Edit group</button>
+            </div>
+        </div>
+    </div>
+</div><!-- /.modal edit -->
+
+<!-- Modal delete-->
+<div class="modal fade" id="my-modal-delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Are you sure you want to delete {{groups.clickedGroup.name}} group?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" ng-click="groups.deleteGroup()" data-dismiss="modal">Yes</button>
+            </div>
+        </div>
+    </div>
+</div><!-- /.modal delete -->

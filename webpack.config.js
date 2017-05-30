@@ -9,7 +9,7 @@ var OpenBrowserWebpackPlugin = require('open-browser-webpack-plugin');
 var PARAMS_DEFAULT = {
     entry: {
         main: './src/main.js',
-        vendor: ['lodash', 'jquery', 'bootstrap', 'angular', 'angular-animate', 'angular-ui-bootstrap']
+        vendor: ['lodash', 'jquery', 'bootstrap', 'angular', 'angular-animate', 'angular-ui-bootstrap', 'firebase', 'angularfire']
     },
     output: {
         filename: '[name].[chunkhash].js',
@@ -29,14 +29,14 @@ var PARAMS_DEFAULT = {
         new webpack.optimize.DedupePlugin()
     ],
     devServer: {
-        port: 8081
+        port: 7878
     }
 };
 var PARAMS_PER_TARGET = {
     DEV: {
         devtool: 'inline-source-map',
         output: {
-            filename: '[name].js'
+            path: './src'
         },
         plugins: [
             new webpack.optimize.CommonsChunkPlugin({
