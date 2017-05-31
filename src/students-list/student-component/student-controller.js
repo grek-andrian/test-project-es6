@@ -1,5 +1,5 @@
 class StudentController {
-    constructor($firebaseArray, $alert, $select) {
+    constructor($firebaseArray, $alert, $modal) {
         this.ref = firebase.database().ref();
         //this.groupsList = $firebaseArray(firebase.database().ref().child("groups"));
         this.$firebaseArray =  $firebaseArray;
@@ -8,7 +8,7 @@ class StudentController {
         this.groupsList = [];
         this.getGroupsList();
         this.$alert = $alert;
-        this.$select = $select;
+        this.$modal = $modal;
     }
 
 
@@ -45,6 +45,15 @@ class StudentController {
             placement: 'top',
             type: 'info',
             show: true});
+    }
+
+    newStudent(){
+      let myModal = this.$modal({
+      templateUrl: 'modal.new.tpl.html',
+      placement: 'center',
+      container: '.container',
+      show: true
+    })
     }
 
     saveStudent() {

@@ -1,0 +1,15 @@
+<!-- Modal delete-->
+<div class="modal fade" id="my-modal-delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Are you sure you want to delete {{students.clickedStudent.firstname + " " + students.clickedStudent.lastname}} ?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" ng-click="students.deleteStudent()" data-dismiss="modal">Yes</button>
+            </div>
+        </div>
+    </div>
+</div><!-- /.modal delete -->
