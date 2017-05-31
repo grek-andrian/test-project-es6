@@ -22,9 +22,7 @@ class StudentController {
 
     updateStudent() {
         let record = this.studentsList.$getRecord(this.clickedStudent.$id);
-        this.studentsList.$save(record).then(function (ref) {
-            console.log("edited record with id " + ref.key);
-        });
+        this.studentsList.$save(record);
         this.message = "The student info successfully updated";
     }
 
@@ -39,9 +37,7 @@ class StudentController {
             lastname: this.newStudent.lastname,
             email: this.newStudent.email,
             group: this.newStudent.group
-        }).then(function (ref) {
-            console.log("added record with id " + ref.key);
-        })
+        });
         this.newStudent = {};
         this.message = "The new student successfully added";
     }
