@@ -1,19 +1,23 @@
 class StudentController {
-    constructor($firebaseArray) {
-        this.ref = firebase.database().ref().child("students");
-        this.groupsList = $firebaseArray(firebase.database().ref().child("groups"));
+    constructor($firebaseArray, $alert, $select) {
+        this.ref = firebase.database().ref();
+        //this.groupsList = $firebaseArray(firebase.database().ref().child("groups"));
         this.$firebaseArray =  $firebaseArray;
         this.studentsList = [];
         this.getStudentList();
+        this.groupsList = [];
+        this.getGroupsList();
+        this.$alert = $alert;
+        this.$select = $select;
     }
+
 
     getStudentList() {
-        this.studentsList = this.$firebaseArray(this.ref);
-
+        this.studentsList = this.$firebaseArray(this.ref.child("students"));
     }
 
-    clearMessage() {
-        this.message = "";
+    getGroupsList(){
+        this.groupsList = this.$firebaseArray(this.ref.child("groups"));
     }
 
     selectStudent(student) {
@@ -23,12 +27,24 @@ class StudentController {
     updateStudent() {
         let record = this.studentsList.$getRecord(this.clickedStudent.$id);
         this.studentsList.$save(record);
-        this.message = "The student info successfully updated";
+        let myAlert = this.$alert({title: 'Success!',
+            content: 'The student info successfully updated',
+            duration: 5,
+            container:'.alert-strap',
+            placement: 'top',
+            type: 'info',
+            show: true});
     }
 
     deleteStudent() {
         this.studentsList.$remove(this.clickedStudent);
-        this.message = "The student successfully deleted";
+        let myAlert = this.$alert({title: 'Success!',
+            content: 'The student successfully deleted',
+            duration: 5,
+            container:'.alert-strap',
+            placement: 'top',
+            type: 'info',
+            show: true});
     }
 
     saveStudent() {
@@ -39,7 +55,13 @@ class StudentController {
             group: this.newStudent.group
         });
         this.newStudent = {};
-        this.message = "The new student successfully added";
+        let myAlert = this.$alert({title: 'Success!',
+            content: 'The new student successfully added',
+            duration: 5,
+            container:'.alert-strap',
+            placement: 'top',
+            type: 'info',
+            show: true});
     }
 }
 

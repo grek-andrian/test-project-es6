@@ -5,8 +5,8 @@ import './main.css';
 // 3rd party modules
 //import bootstrap from 'bootstrap';
 
-import angular from 'angular';
-import angularAnimate from 'angular-animate';
+// import angular from 'angular';
+// import angularAnimate from 'angular-animate';
 import angularUiBootstrap from 'angular-ui-bootstrap';
 
 
@@ -17,7 +17,7 @@ import groupsList from './groups-list/groups-list.module';
 import studentsList from './students-list/students-list.module';
 
 angular.module('main', [
-    angularAnimate, angularUiBootstrap, app, common, groupsList, studentsList
+    'ngAnimate', angularUiBootstrap, 'mgcrea.ngStrap', app, common, groupsList, studentsList
 ]);
 
 angular.element(document).ready(() => {

@@ -1,18 +1,15 @@
 class GroupController {
-    constructor($firebaseArray) {
+    constructor($firebaseArray, $alert) {
         this.ref = firebase.database().ref().child("groups");
         this.$firebaseArray =  $firebaseArray;
         this.groupsList = [];
         this.getGroupList();
+        this.$alert = $alert;
     }
 
     getGroupList() {
         this.groupsList = this.$firebaseArray(this.ref);
 
-    }
-
-    clearMessage() {
-        this.message = "";
     }
 
     selectGroup(group) {
@@ -22,12 +19,26 @@ class GroupController {
     updateGroup() {
         let record = this.groupsList.$getRecord(this.clickedGroup.$id);
         this.groupsList.$save(record);
-        this.message = "The group successfully updated";
+        let myAlert = this.$alert({title: 'Success!',
+            content: 'The group successfully updated',
+            duration: 5,
+            container:'.alert-strap',
+            placement: 'top',
+            type: 'info',
+            show: true});
+        //this.message = "The group successfully updated";
     }
 
     deleteGroup() {
         this.groupsList.$remove(this.clickedGroup);
-        this.message = "The group successfully deleted";
+        let myAlert = this.$alert({title: 'Success!',
+            content: 'The group successfully deleted',
+            duration: 5,
+            container:'.alert-strap',
+            placement: 'top',
+            type: 'info',
+            show: true});
+        //this.message = "The group successfully deleted";
     }
 
     saveGroup() {
@@ -35,9 +46,15 @@ class GroupController {
             name: this.newGroup.name
         });
         this.newGroup = {};
-        this.message = "The new group successfully added";
+        let myAlert = this.$alert({title: 'Success!',
+            content: 'The new group successfully added.',
+            duration: 5,
+            container:'.alert-strap',
+            placement: 'top',
+            type: 'info',
+            show: true});
+        //this.message = "The new group successfully added";
     }
 }
-
 
 export default GroupController;
