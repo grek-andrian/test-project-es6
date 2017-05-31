@@ -4,7 +4,6 @@ import './main.css';
 
 // 3rd party modules
 //import bootstrap from 'bootstrap';
-//import firebase from 'firebase';
 
 import angular from 'angular';
 import angularAnimate from 'angular-animate';
@@ -15,10 +14,10 @@ import angularUiBootstrap from 'angular-ui-bootstrap';
 import app from './app/app.module';
 import common from './common/common.module';
 import groupsList from './groups-list/groups-list.module';
-import featureB from './feature-b/feature-b.module';
+import studentsList from './students-list/students-list.module';
 
 angular.module('main', [
-    angularAnimate, angularUiBootstrap, app, common, groupsList, featureB
+    angularAnimate, angularUiBootstrap, app, common, groupsList, studentsList
 ]);
 
 angular.element(document).ready(() => {

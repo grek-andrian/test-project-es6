@@ -1,6 +1,8 @@
-export function routing($urlRouterProvider, $stateProvider) {
+export function routing($urlRouterProvider, $locationProvider, $stateProvider) {
 
     $urlRouterProvider.otherwise('/groups');
+    $locationProvider.html5Mode(false);
+    $locationProvider.hashPrefix('');
 
     $stateProvider
         .state('app', {
