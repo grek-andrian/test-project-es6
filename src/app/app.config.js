@@ -1,6 +1,6 @@
 export function routing($urlRouterProvider, $stateProvider) {
 
-    $urlRouterProvider.otherwise('/feature-a');
+    $urlRouterProvider.otherwise('/groups');
 
     $stateProvider
         .state('app', {
