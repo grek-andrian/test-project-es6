@@ -1,11 +1,11 @@
-<!-- Modal create -->
-<div class="modal fade" id="my-modal-create">
+<div class="modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <div class="modal-header" >
+                <button type="button" class="close" aria-label="Close" ng-click="$hide()"><span aria-hidden="true">×</span></button>
                 <h4 class="modal-title">New student registration</h4>
             </div>
+
             <div class="modal-body">
                 <form>
                     <div class="form-group">
@@ -21,11 +21,6 @@
                         <input type="email" class="form-control" id="email" ng-model="students.newStudent.email">
                     </div>
                     <div class="form-group">
-                        <label>Single select:&nbsp;</label>
-                        <button type="button" class="btn btn-default" ng-model="selectedIcon" data-html="1" data-toggle="true" bs-options="icon.value as icon.label for icon in icons" bs-select>
-                            Action <span class="caret"></span>
-                        </button>
-
                         <label for="group">Group:</label>
                         <select class="form-control input-md" id="group" name="singleSelect" ng-model="students.newStudent.group">
                             <option ng-repeat="group in students.groupsList" value="{{group.name}}">{{group.name}}</option>
@@ -34,9 +29,9 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" ng-click="students.saveStudent(student.newStudent)"  data-dismiss="modal">Create student</button>
+                <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="students.saveStudent(students.newStudent)" data-dismiss="modal">Create student</button>
             </div>
         </div>
     </div>
-</div><!-- /.modal create -->
+</div>

@@ -124,3 +124,7 @@ user-info-component {
 .main .page-header {
     margin-top: 0;
 }
+
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}

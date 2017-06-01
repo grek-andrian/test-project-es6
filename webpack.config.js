@@ -9,7 +9,7 @@ var OpenBrowserWebpackPlugin = require('open-browser-webpack-plugin');
 var PARAMS_DEFAULT = {
     entry: {
         main: './src/main.js',
-        vendor: ['lodash', 'jquery', 'bootstrap', 'angular', 'angular-animate', 'angular-ui-bootstrap', 'firebase', 'angularfire']
+        vendor: ['lodash', 'jquery', 'bootstrap', 'angular-animate', 'angular-ui-bootstrap', 'firebase', 'angularfire']
     },
     output: {
         filename: '[name].[chunkhash].js',
