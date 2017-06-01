@@ -71,16 +71,10 @@ class StudentController {
             container: 'body',
             show: true
         });
-        console.log(this.clickedStudent);
     }
 
     deleteStudent() {
-        console.log(this.myModal);
-        this.studentsList.$remove(this.clickedStudent).then(function(){
-            console.log ("Deleted");
-        }, function(error){
-            console.log(error);
-        });
+        this.studentsList.$remove(this.clickedStudent);
         this.myModal.hide();
         let myAlert = this.$alert({title: 'Success!',
             content: 'The student successfully deleted',
@@ -99,7 +93,7 @@ class StudentController {
             placement: 'center',
             container: 'body',
             show: true
-    })
+        })
     }
 
     saveStudent() {
@@ -109,7 +103,6 @@ class StudentController {
             email: this.newStudent.email,
             group: this.newStudent.group
         });
-        console.log(this.myModal);
         this.myModal.hide();
         this.newStudent = {};
         let myAlert = this.$alert({title: 'Success!',

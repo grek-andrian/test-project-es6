@@ -24,8 +24,8 @@
                 <td>{{student.lastname}}</td>
                 <td>{{student.email}}</td>
                 <td>{{student.group}}</td>
-                <td><button type="button" class="btn btn-info" data-toggle="modal" href="#my-modal-edit" ng-click="students.selectStudent(student)"><span class="glyphicon glyphicon glyphicon-pencil"></span></button></td>
-                <td><button type="button" class="btn btn-danger" data-toggle="modal" href="#my-modal-delete" ng-click="students.getStudent(student)"><span class="glyphicon  glyphicon glyphicon-trash"></span></button></td>
+                <td><button type="button" class="btn btn-info" ng-click="students.selectStudent(student)"><span class="glyphicon glyphicon glyphicon-pencil"></span></button></td>
+                <td><button type="button" class="btn btn-danger" ng-click="students.getStudent(student)"><span class="glyphicon  glyphicon glyphicon-trash"></span></button></td>
             </tr>
             </tbody>
         </table>
