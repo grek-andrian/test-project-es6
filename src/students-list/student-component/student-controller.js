@@ -8,10 +8,19 @@ class StudentController {
         this.getGroupsList();
         this.$alert = $alert;
         this.$modal = $modal;
+        this.itemsPerPage = 5;
+        this.currentPage = 1;
+        this.setPage();
+    }
+
+
+    setPage(page) {
+        this.currentPage = page;
     }
 
     getStudentList() {
         this.studentsList = this.$firebaseArray(this.ref.child("students"));
+        this.studentsList.$loaded().then(studentsList => studentsList.length);
     }
 
     getGroupsList(){
