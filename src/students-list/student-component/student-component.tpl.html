@@ -18,8 +18,11 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="student in students.studentsList.slice(((students.currentPage-1)*students.itemsPerPage), ((students.currentPage)*students.itemsPerPage))">
-                <td>{{$index+1}}</td>
+              {{students.filteredStudents}}
+              {{students.studentsList}}
+              {{students.totalItems}}
+            <tr ng-repeat="student in students.filteredStudents track by $index">
+                <td>{{($index + 1) + (students.currentPage - 1) * students.itemsPerPage}}</td>
                 <td>{{student.firstname}}</td>
                 <td>{{student.lastname}}</td>
                 <td>{{student.email}}</td>
@@ -30,9 +33,13 @@
             </tbody>
         </table>
         <div class="text-center">
-            <pagination total-items="students.studentsList.length" items-per-page="students.itemsPerPage"
-                    ng-model="students.currentPage" on-select-change="students.setPage(page)"></pagination>
-        </div>>
+          <pagination boundary-links="true"
+                          items-per-page="students.itemsPerPage"
+                          total-items="students.studentsList.length"
+                          ng-model="students.currentPage"
+                          ng-change="students.pageChanged()">
+            </pagination>
+        </div>
     </div>
 </div>
 </div>
