@@ -1,7 +1,8 @@
 class StudentController {
-    constructor($firebaseArray, $alert, $modal) {
+    constructor($firebaseArray, $alert, $modal, $timeout) {
         this.ref = firebase.database().ref();
-        this.$firebaseArray =  $firebaseArray;
+        this.$timeout = $timeout;
+        this.$firebaseArray = $firebaseArray;
         this.studentsList = [];
         this.getStudentList();
         this.groupsList = [];
@@ -10,18 +11,21 @@ class StudentController {
         this.$modal = $modal;
         this.itemsPerPage = 5;
         this.currentPage = 1;
-        //this.filteredStudents = [];
+        this.filteredStudents = [];
         this.studentsToDisplay();
         this.pageChanged();
-        console.log(this.studentsList.length);
-        console.log(this.studentsList);
-        console.log(this);
     }
+
 
     studentsToDisplay() {
       var begin = ((this.currentPage - 1) * this.itemsPerPage);
       var end = begin + this.itemsPerPage;
       this.filteredStudents = this.studentsList.slice(begin, end);
+        if (!this.filteredStudents.length) {
+            this.$timeout(()=>{
+                this.studentsToDisplay();
+            })
+        }
     }
 
     pageChanged() {
@@ -30,16 +34,6 @@ class StudentController {
 
     getStudentList() {
         return this.studentsList = this.$firebaseArray(this.ref.child("students"));
-        // return this.studentsList.$promise.then(function () {
-        //     this.totalItems = this.studentsList.length;
-        //     this.$watch('currentPage + itemsPerPage', function() {
-        //       var begin = ((this.currentPage - 1) * this.itemsPerPage),
-        //         end = begin + this.itemsPerPage;
-        //
-        //       this.filteredStudents = this.studentsList.slice(begin, end);
-        //     })
-        //     });
-        //return this.studentsList.$loaded().then(studentsList => (this.studentsList));
     }
 
     getGroupsList(){
