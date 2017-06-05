@@ -18,7 +18,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="student in students.filteredStudents track by $index">
+            <tr ng-repeat="student in students.filteredStudents">
                 <td>{{($index + 1) + (students.currentPage - 1) * students.itemsPerPage}}</td>
                 <td>{{student.firstname}}</td>
                 <td>{{student.lastname}}</td>

@@ -10,27 +10,27 @@
                 <form>
                     <div class="form-group">
                         <label for="firstname">First name:</label>
-                        <input type="text" class="form-control" id="firstname" ng-model="students.newStudent.firstname">
+                        <input type="text" class="form-control" id="firstname" ng-model="ctrl.newStudentMy.firstname">
                     </div>
                     <div class="form-group">
                         <label for="lastname">Last name:</label>
-                        <input type="text" class="form-control" id="lastname" ng-model="students.newStudent.lastname">
+                        <input type="text" class="form-control" id="lastname" ng-model="ctrl.newStudentMy.lastname">
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input type="email" class="form-control" id="email" ng-model="students.newStudent.email">
+                        <input type="email" class="form-control" id="email" ng-model="ctrl.newStudentMy.email">
                     </div>
                     <div class="form-group">
                         <label for="group">Group:</label>
-                        <select class="form-control input-md" id="group" name="singleSelect" ng-model="students.newStudent.group">
-                            <option ng-repeat="group in students.groupsList" value="{{group.name}}">{{group.name}}</option>
+                        <select class="form-control input-md" id="group" name="singleSelect" ng-model="ctrl.newStudentMy.group">
+                            <option ng-repeat="group in ctrl.groupsList" value="{{group.name}}">{{group.name}}</option>
                         </select>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>
-                <button type="button" class="btn btn-primary" ng-click="students.saveStudent(students.newStudent)" data-dismiss="modal">Create student</button>
+                <button type="button" class="btn btn-primary" ng-click="ctrl.saveStudent(ctrl.newStudentMy)" data-dismiss="modal">Create student</button>
             </div>
         </div>
     </div>

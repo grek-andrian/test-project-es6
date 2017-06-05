@@ -13,9 +13,7 @@ class StudentController {
         this.currentPage = 1;
         this.filteredStudents = [];
         this.studentsToDisplay();
-        this.pageChanged();
     }
-
 
     studentsToDisplay() {
       var begin = ((this.currentPage - 1) * this.itemsPerPage);
@@ -33,11 +31,35 @@ class StudentController {
     }
 
     getStudentList() {
-        return this.studentsList = this.$firebaseArray(this.ref.child("students"));
+
+       this.studentsList = this.$firebaseArray(this.ref.child("students"));
     }
 
     getGroupsList(){
         this.groupsList = this.$firebaseArray(this.ref.child("groups"));
+    }
+
+    openMyModal(controller, template){
+        return this.$modal({
+            controller: controller,
+            controllerAs: "ctrl",
+            templateUrl: template,
+            placement: 'center',
+            container: 'body',
+            show: true
+        })
+    }
+
+    openMyAlert(content){
+        return this.$alert({
+            title: 'Success!',
+            content: content,
+            duration: 5,
+            container:'.alert-strap',
+            placement: 'top',
+            type: 'info',
+            show: true
+        })
     }
 
     selectStudent(student) {
@@ -51,89 +73,64 @@ class StudentController {
                 self.updateStudent();
             }
             };
-
-        this.myModal = this.$modal({
-            controller: controller,
-            controllerAs: "ctrl",
-            templateUrl: '/src/students-list/student-component/modal.edit.tpl.html',
-            placement: 'center',
-            container: 'body',
-            show: true
-        });
+        this.template = '/src/students-list/student-component/modal.edit.tpl.html';
+        this.myModal = this.openMyModal(controller, this.template);
     }
 
     updateStudent() {
         let record = this.studentsList.$getRecord(this.clickedStudent.$id);
         this.studentsList.$save(record);
         this.myModal.hide();
-        let myAlert = this.$alert({title: 'Success!',
-            content: 'The student info successfully updated',
-            duration: 5,
-            container:'.alert-strap',
-            placement: 'top',
-            type: 'info',
-            show: true});
+        this.myAlert = this.openMyAlert('The student info successfully updated');
     }
 
     getStudent(student) {
+
         this.clickedStudent = student;
         let self = this;
         let controller = function () {
             this.clickedStudent = student;
+            this.studentsToDisplay = self.studentsToDisplay();
             this.deleteStudent = () => {
                 self.deleteStudent();
             }
         };
-
-        this.myModal = this.$modal({
-            controller: controller,
-            controllerAs: "ctrl",
-            templateUrl: '/src/students-list/student-component/modal.delete.tpl.html',
-            placement: 'center',
-            container: 'body',
-            show: true
-        });
+        this.template = '/src/students-list/student-component/modal.delete.tpl.html';
+        this.myModal = this.openMyModal(controller, this.template);
     }
 
     deleteStudent() {
-        this.studentsList.$remove(this.clickedStudent);
+        this.studentsList.$remove(this.clickedStudent).then(()=>{
+                this.studentsToDisplay();
+            },
+            function(error){console.log(error);});
         this.myModal.hide();
-        let myAlert = this.$alert({title: 'Success!',
-            content: 'The student successfully deleted',
-            duration: 5,
-            container:'.alert-strap',
-            placement: 'top',
-            type: 'info',
-            show: true});
+        this.myAlert = this.openMyAlert('The student successfully deleted');
     }
 
     newStudent(){
-        this.myModal = this.$modal({
-            controller: StudentController,
-            controllerAs: 'students',
-            templateUrl: '/src/students-list/student-component/modal.new.tpl.html',
-            placement: 'center',
-            container: 'body',
-            show: true
-        })
+        this.newStudentMy ={};
+        let self = this;
+        let controller = function () {
+            this.studentsList = self.studentsList;
+            this.groupsList = self.groupsList;
+            this.newStudentMy = self.newStudentMy;
+            this.studentsToDisplay = self.studentsToDisplay();
+            this.saveStudent = (obj) => {
+                self.saveStudent(obj);
+            }
+        };
+        this.template = '/src/students-list/student-component/modal.new.tpl.html';
+        this.myModal = this.openMyModal(controller, this.template);
     }
 
-    saveStudent() {
-        this.studentsList.$add({
-            firstname: this.newStudent.firstname,
-            lastname: this.newStudent.lastname,
-            email: this.newStudent.email,
-            group: this.newStudent.group
-        });
+    saveStudent(obj) {
+        this.studentsList.$add(obj).then(()=>{
+                this.studentsToDisplay();
+                },
+            function(error){console.log(error);});
         this.myModal.hide();
-        this.newStudent = {};
-        let myAlert = this.$alert({title: 'Success!',
-            content: 'The new student successfully added',
-            duration: 5,
-            container:'.alert-strap',
-            placement: 'top',
-            type: 'info',
-            show: true});
+        this.myAlert = this.openMyAlert('The new student successfully added');
     }
 }
 

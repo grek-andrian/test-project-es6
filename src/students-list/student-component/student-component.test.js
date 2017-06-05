@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 
-import SomeComponent from './some-component';
+import SomeComponent from './student-component';
 
 let component;
 
