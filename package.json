@@ -26,6 +26,7 @@
     "angularfire": "^2.3.0",
     "bootstrap": "3.3.5",
     "firebase": "3.8.0",
+    "firebase-mock": "^1.0.7",
     "jquery": "2.1.4",
     "lodash": "3.10.1"
   },
