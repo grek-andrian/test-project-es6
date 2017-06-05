@@ -16,8 +16,8 @@ class StudentController {
     }
 
     studentsToDisplay() {
-      var begin = ((this.currentPage - 1) * this.itemsPerPage);
-      var end = begin + this.itemsPerPage;
+      let begin = ((this.currentPage - 1) * this.itemsPerPage);
+      let end = begin + this.itemsPerPage;
       this.filteredStudents = this.studentsList.slice(begin, end);
         if (!this.filteredStudents.length) {
             this.$timeout(()=>{
