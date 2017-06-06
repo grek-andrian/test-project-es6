@@ -31,7 +31,6 @@ class StudentController {
     }
 
     getStudentList() {
-
        this.studentsList = this.$firebaseArray(this.ref.child("students"));
     }
 

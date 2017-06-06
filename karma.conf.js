@@ -3,8 +3,8 @@ var webpack = require('webpack');
 module.exports = function(config) {
     config.set({
         browsers:   ['Chrome'],
-        frameworks: ['jasmine'],
-        reporters:  ['mocha'],
+        frameworks: ['mocha'],
+        reporters:  ['mocha', 'html'],
 
         logLevel: config.LOG_INFO,
         autoWatch: true,
@@ -13,7 +13,9 @@ module.exports = function(config) {
         port: 9876,
 
         basePath: '',
-        files: ['webpack.karma.context.js'],
+        files: ['webpack.karma.context.js',
+            'https://www.gstatic.com/firebasejs/4.0.0/firebase.js',
+            'https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js'],
         preprocessors: { 'webpack.karma.context.js': ['webpack'] },
         exclude: [],
         webpack: {
