@@ -92,7 +92,7 @@ module.exports = {
     output: params.output,
     module: {
         loaders: [
-            {test: /\.js$/, loader: 'babel-loader', exclude: /(\.test.js$|node_modules)/},
+            {test: /\.js$/, loader: 'babel-loader', exclude: /(node_modules|bower_components)/},
             {test: /\.css$/, loader: 'style-loader!css-loader'},
             {test: /\.tpl.html/, loader: 'html-loader'},
             {test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/, loader: 'url-loader?limit=50000'}

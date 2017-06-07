@@ -1,4 +1,4 @@
-class StudentController {
+export default class StudentController {
     constructor($firebaseArray, $alert, $modal, $timeout) {
         this.ref = firebase.database().ref();
         this.$timeout = $timeout;
@@ -133,4 +133,4 @@ class StudentController {
     }
 }
 
-export default StudentController;
+StudentController.$inject = ['$firebaseArray', '$alert', '$modal', '$timeout'];

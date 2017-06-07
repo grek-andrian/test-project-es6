@@ -1,28 +1,32 @@
 import { assert } from 'chai';
 
 import StudentController  from './student-controller.js';
+import * as firebase from "firebase";
 
 describe('StudentController', () => {
 
-    let ctrl, firebase;
+    let ctrl;
+
+    // beforeEach(() => {
+    //      MockFirebase.override();
+    //    });
+
 
         beforeEach(() => {
 
-        //     firebase = {
-        //         getStudentList: () => {
-        //             return {
-        //                 then: (success) => success({
-        //                     data: {
-        //                         studentsList: []
-        //                     }
-        //                 })
-        //             };
-        //         }
-        //     }
+            // firebase = {
+            //     getStudentList: () => {
+            //         return {
+            //             then: (success) => success({
+            //                 data: {
+            //                     studentsList: []
+            //                 }
+            //             })
+            //         };
+            //     }
+            // }
 
-                //$firebaseArray( Firebase("https://https://students-crud.firebaseio.com/students"));
-
-            ctrl = new StudentController(Firebase);
+            ctrl = new StudentController(firebase);
         });
 
 
