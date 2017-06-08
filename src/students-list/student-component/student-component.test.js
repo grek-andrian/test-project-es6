@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 
 import StudentController  from './student-controller.js';
-import * as firebase from "firebase";
+//import * as firebase from "firebase";
 
 describe('StudentController', () => {
 

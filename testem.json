@@ -1,0 +1,11 @@
+{
+    "launch_in_dev": [
+        "Chrome"
+    ],
+    "framework": "mocha",
+    "src_files": [
+        "tmp/**/*.test.js"
+    ],
+    "on_start": "babel src --out-dir tmp"
+
+}

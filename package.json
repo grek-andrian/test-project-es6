@@ -12,8 +12,9 @@
     "lint": "eslint src/",
     "mocha": "mocha --compilers js:babel-register ./src/**/*.test.js",
     "watch": "mocha --compilers js:babel-register -w ./src/**/*.test.js",
+
     "karma": "karma start",
-    "test": "npm run lint && npm run mocha && karma start --single-run",
+    "test": "mocha-phantomjs ./TestRunner.html",
     "ci": "npm run lint && npm run mocha && npm run dist"
   },
   "author": "tomas.trajan@gmail.com",

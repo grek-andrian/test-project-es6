@@ -3,7 +3,7 @@ var webpack = require('webpack');
 module.exports = function(config) {
     config.set({
         browsers:   ['Chrome'],
-        frameworks: ['mocha'],
+        frameworks: ['mocha', 'chai'],
         reporters:  ['mocha', 'html'],
 
         logLevel: config.LOG_INFO,
