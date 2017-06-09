@@ -6,6 +6,7 @@
     "src_files": [
         "tmp/**/*.test.js"
     ],
-    "on_start": "babel src --out-dir tmp"
-
+    "test_page": "runer.mustache",
+    "on_start": "babel src --out-dir tmp",
+    "on_exit": "rm -rf tmp"
 }

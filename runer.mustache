@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+    <title>Test'em</title>
+    <script src="./node_modules/angular/angular.js"></script>
+    <script src="./node_modules/angular-animate/angular-animate.js"></script>
+    <script src="./bower_components/angular-strap/dist/angular-strap.js"></script>
+    <script src="./bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/mocha/2.3.4/mocha.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mocha/2.3.4/mocha.js"></script>
+    <script src="/testem.js"></script>
+    <script src="./bower_components/traceur/traceur.js"></script>
+    <script src="./bower_components/firebase-mock/browser/firebasemock.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+    <script>
+        var config = {
+            apiKey: "AIzaSyD42nq5lLz4HPaOii1g5lc0qTX79Y4CooU",
+            authDomain: "students-crud.firebaseapp.com",
+            databaseURL: "https://students-crud.firebaseio.com",
+            projectId: "students-crud",
+            storageBucket: "students-crud.appspot.com",
+            messagingSenderId: "244088294230"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script>mocha.setup('bdd')</script>
+
+    <script src="./bower_components/chai/chai.js"></script>
+    <script src="./bower_components/requirejs/require.js"></script>
+
+    </head>
+    <body>
+
+    <div id="mocha"></div>
+    <script>
+        var files = [];
+            {{#serve_files}}
+            files.push("../{{{src}}}");
+            {{/serve_files}}
+        require(files, function() {
+            mocha.run();
+        });
+    </script>
+    </body>
+</html>

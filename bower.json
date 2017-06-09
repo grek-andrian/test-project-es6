@@ -1,0 +1,25 @@
+{
+  "name": "angular-js-es6-testing-example",
+  "description": "Enhanced testing of Angular JS 1.X applications using ES6 modules",
+  "main": "src/app.js",
+  "authors": [
+    "tomas.trajan@gmail.com"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/grek-andrian/test-project-es6",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-strap": "^2.3.12",
+    "chai": "^4.0.2",
+    "firebase-mock": "^1.0.7",
+    "traceur": "^0.0.111",
+    "angular-animate": "^1.6.4",
+    "requirejs": "^2.3.3"
+  }
+}

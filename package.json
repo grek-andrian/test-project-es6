@@ -12,7 +12,6 @@
     "lint": "eslint src/",
     "mocha": "mocha --compilers js:babel-register ./src/**/*.test.js",
     "watch": "mocha --compilers js:babel-register -w ./src/**/*.test.js",
-
     "karma": "karma start",
     "test": "mocha-phantomjs ./TestRunner.html",
     "ci": "npm run lint && npm run mocha && npm run dist"
@@ -36,6 +35,7 @@
     "awesome-typescript-loader": "0.11.3",
     "babel-core": "6.5",
     "babel-loader": "6.2.1",
+    "babel-plugin-transform-es2015-modules-amd": "^6.24.1",
     "babel-plugin-transform-runtime": "6.4.3",
     "babel-preset-es2015": "6.3.13",
     "babel-register": "6.5",

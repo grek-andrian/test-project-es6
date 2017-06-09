@@ -1,18 +1,13 @@
-import { assert } from 'chai';
-
 import StudentController  from './student-controller.js';
-//import * as firebase from "firebase";
 
 describe('StudentController', () => {
 
-    let ctrl;
-
-    // beforeEach(() => {
-    //      MockFirebase.override();
-    //    });
+    let ctrl, firebase, $firebaseArray, ref;
 
 
         beforeEach(() => {
+
+            $firebaseArray =
 
             // firebase = {
             //     getStudentList: () => {
@@ -24,15 +19,38 @@ describe('StudentController', () => {
             //             })
             //         };
             //     }
-            // }
+            // };
+            //  ref = {
+            //      return: {
+            //         then: (success) => success({
+            //          ref: {
+            //              firebase.database().ref()
+            //          }
+            //         })
+            //     }
+            //  };
+            //
+            //
+            // $firebaseArray = {(ref) =>
+            // {
+            //     return {
+            //         then: (success) => success({
+            //             data: {
+            //                 studentsList: []
+            //             }
+            //         })
+            //     }
+            // };
 
-            ctrl = new StudentController(firebase);
+            ctrl = new StudentController(
+                $firebaseArray
+                )
         });
 
 
         it('should return the correct result', () => {
             expect(ctrl.itemsPerPage).to.be.equal(5);
-            assert.equal(ctrl.itemsPerPage, 5, 'itemPerPage equal 5');
+            //assert.equal(ctrl.itemsPerPage, 5, 'itemPerPage equal 5');
         });
 
 //     let firebaseRef, controller, $rootscope;
