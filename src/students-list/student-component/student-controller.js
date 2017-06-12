@@ -127,7 +127,7 @@ export default class StudentController {
         this.studentsList.$add(obj).then(()=>{
                 this.studentsToDisplay();
                 },
-            function(error){console.log(error);});
+            (error) => {console.log(error);});
         this.myModal.hide();
         this.myAlert = this.openMyAlert('The new student successfully added');
     }

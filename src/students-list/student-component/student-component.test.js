@@ -1,146 +1,53 @@
 import StudentController  from './student-controller.js';
+let expect = chai.expect;
 
 describe('StudentController', () => {
 
-    let ctrl, firebase, $firebaseArray, ref;
-
+    let ctrl, $MockFirebaseArray, studentsList, $MockModal;
 
         beforeEach(() => {
 
-            $firebaseArray =
-
-            // firebase = {
-            //     getStudentList: () => {
-            //         return {
-            //             then: (success) => success({
-            //                 data: {
-            //                     studentsList: []
-            //                 }
-            //             })
-            //         };
-            //     }
-            // };
-            //  ref = {
-            //      return: {
-            //         then: (success) => success({
-            //          ref: {
-            //              firebase.database().ref()
-            //          }
-            //         })
-            //     }
-            //  };
-            //
-            //
-            // $firebaseArray = {(ref) =>
-            // {
-            //     return {
-            //         then: (success) => success({
-            //             data: {
-            //                 studentsList: []
-            //             }
-            //         })
-            //     }
-            // };
+            $MockFirebaseArray = () => {
+                return studentsList;
+            };
+            studentsList =  [1,2,3,4,5,6];
 
             ctrl = new StudentController(
-                $firebaseArray
+                $MockFirebaseArray, $MockModal
                 )
         });
 
-
-        it('should return the correct result', () => {
-            expect(ctrl.itemsPerPage).to.be.equal(5);
-            //assert.equal(ctrl.itemsPerPage, 5, 'itemPerPage equal 5');
+        it('Loads data correctly', function() {
+            expect(ctrl).to.not.be.undefined;
         });
 
-//     let firebaseRef, controller, $rootscope;
-//
-//       beforeEach(() => {
-//         window.MockFirebase.override();
-//       });
-//
-//       beforeEach(() => {
-//         window.MockFirebase.restore();
-//       });
-//
-//       beforeEach(module('firebase.database', (_$firebaseRefProvider_) => {
-//         _$firebaseRefProvider_.registerUrl('Mock');
-//       }));
-//
-//       beforeEach(() => {
-//         module('main.app.students-list');
-//
-//         inject(($controller, $firebaseArray, $firebaseRef, _$rootScope_) => {
-//           $rootscope = _$rootScope_;
-//
-//           controller = $controller('StudentController', {
-//             $firebaseRef: $firebaseRef,
-//             $firebaseArray: $firebaseArray
-//           });
-//         });
-//     });
-//
-//     describe('Object Data Testing', () => {
-//
-//     beforeEach(() => {
-//       inject(($firebaseRef) => {
-//         firebaseRef = $firebaseRef.default.child('students');
-//       });
-//     });
-//
-//     it('should read object data from firebase', () => {
-//       const student = {
-//         firstname: 'John',
-//         lastname: 'Doe',
-//         email: 'jhon@ukr.net'
-//       };
-//
-//       firebaseRef.set(student);
-//       firebaseRef.flush();
-//       $rootscope.$digest();
-//
-//       expect(controller.student.firstname).toEqual(student.firstname);
-//     });
-//
-//     it('should write object data to firebase', () => {
-//       let student;
-//
-//       // save some data that our controller will read
-//       firebaseRef.on('value', (data) => {
-//         student = data.val();
-//       });
-//
-//       controller.updateStudent('Joe');
-//       firebaseRef.flush();
-//       $rootscope.$digest();
-//
-//       const keys = Object.keys(student);
-//       expect(keys.length).toEqual(1);
-//       expect(controller.student.name).toEqual(student.name);
-//     });
-// });
+        it('should return the correct number student per page', () => {
+            expect(ctrl.itemsPerPage).to.be.equal(5);
+        });
+
+        it('should be studentsList an array', () => {
+            expect(ctrl.filteredStudents).to.be.an('array');
+        });
+
+        it('should be groupsList an array', () => {
+            expect(ctrl.groupsList).to.be.an('array');
+        });
+
+        it('should array filtered students have length equal itemsPerPage', () => {
+            expect(ctrl.filteredStudents.length).to.be.equal(ctrl.itemsPerPage);
+        });
+
+        // it('should add new student to studentList', () => {
+        //     let newStudent = {"firstname": "Ivan", "lastname": "Franko"}
+        //     ctrl.saveStudent(newStudent);
+        //     expect(ctrl.groupsList).to.include(newStudent);
+        // });
 
 
+        // it('should open modal after click button New student', () => {
+        //     ctrl.newStudent();
+        //     expect(ctrl.myModal).to.have.an('object');
+        // });
 
 });
 
-// describe('My controller', function () {
-//   var scope, createController;
-//
-//   beforeEach(module('app.controllers'));
-//
-//   beforeEach(inject(function ($injector) {
-//     var $rootScope = $injector.get('$rootScope');
-//     var $controller = $injector.get('$controller');
-//
-//     scope = $rootScope.$new();
-//
-//     createController = function () {
-//       return $controller('CustomCtrl', {$scope: scope});
-//     };
-//   }));
-//
-//   afterEach(function () {
-//     scope.$destroy();
-//   });
-// });
