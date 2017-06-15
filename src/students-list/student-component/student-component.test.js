@@ -3,18 +3,26 @@ let expect = chai.expect;
 
 describe('StudentController', () => {
 
-    let ctrl, $MockFirebaseArray, studentsList, $MockModal;
+    let ctrl, $MockFirebaseArray, $alert, $modal;
 
         beforeEach(() => {
 
             $MockFirebaseArray = () => {
                 return studentsList;
             };
-            studentsList =  [1,2,3,4,5,6];
+
+            let studentsList =  [1,2,3,4,5,6];
+
+            $alert = () => {};
+            $modal = () => {};
+            $modal = {
+                hide: () => {}
+            };
+          //ctrl.$modal.hide = () => { };
 
             ctrl = new StudentController(
-                $MockFirebaseArray, $MockModal
-                )
+                $MockFirebaseArray, $alert, $modal
+            );
         });
 
         it('Loads data correctly', function() {
@@ -37,17 +45,28 @@ describe('StudentController', () => {
             expect(ctrl.filteredStudents.length).to.be.equal(ctrl.itemsPerPage);
         });
 
-        // it('should add new student to studentList', () => {
-        //     let newStudent = {"firstname": "Ivan", "lastname": "Franko"}
-        //     ctrl.saveStudent(newStudent);
-        //     expect(ctrl.groupsList).to.include(newStudent);
-        // });
+        it('should add new student to studentList', () => {
+            ctrl.myModal = ctrl.$modal;
+            ctrl.studentsList.$add = (student) => {
+                ctrl.studentsList.push(student);
+                return {
+                    then: (success) => success({
+                        studentsList: 'studentsList'
+                    })
+                };
+            };
+            let student = "newstudent";
+            ctrl.saveStudent(student);
+            expect(ctrl.studentsList).to.include(student);
+        });
 
+        it('should update student in studentList', () => {
 
-        // it('should open modal after click button New student', () => {
-        //     ctrl.newStudent();
-        //     expect(ctrl.myModal).to.have.an('object');
-        // });
+        });
+
+        it('should delete student from studentList', () => {
+
+        });
 
 });
 

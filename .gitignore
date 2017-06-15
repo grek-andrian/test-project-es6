@@ -6,3 +6,4 @@ dist
 npm-debug.log
 karma_html
 tmp
+debug.log
